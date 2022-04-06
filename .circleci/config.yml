@@ -76,11 +76,17 @@ jobs:
       # Checkout code from git
       # Restore from cache
       # Your job code here
+      - run:
+          command: |
+            exit 1
                 
   test-backend:
     docker:
       - image: cimg/node:16.14.2
     steps:
+      - run:
+          command: |
+            exit 1
       # Checkout code from git
       # Restore from cache
       # Your job code here
@@ -89,6 +95,9 @@ jobs:
     docker:
       - image: cimg/node:16.14.2
     steps:
+      - run:
+          command: |
+            exit 1
       # Checkout code from git
       # Restore from cache
       # Your job code here
@@ -97,6 +106,9 @@ jobs:
     docker:
       - image: cimg/node:16.14.2
     steps:
+      - run:
+          command: |
+            exit 1
       # Checkout code from git
       # Restore from cache
       # Your job code here
