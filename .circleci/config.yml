@@ -87,13 +87,16 @@ jobs:
     docker:
       - image: cimg/node:16.14.2
     steps:
+      - checkout
+      - restore_cache:
+          keys: [backend-build]
       - run:
+          name: Run backend tests
           command: |
-            exit 1
-      # Checkout code from git
-      # Restore from cache
-      # Your job code here
-            
+            cd backend
+            npm install
+            npm run test   
+
   scan-frontend:
     docker:
       - image: cimg/node:16.14.2
