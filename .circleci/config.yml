@@ -54,7 +54,6 @@ jobs:
 
   build-backend:
     docker:
-      - image: circleci/node:13.8.0
       - image: cimg/node:16.14.2
     steps:
       - checkout
@@ -63,8 +62,9 @@ jobs:
       - run:
           name: Back-end build
           command: |
-             # Your code here
-             exit 1
+            cd backend
+            npm install
+            npm run build
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
@@ -79,7 +79,7 @@ jobs:
       - run:
           command: |
             exit 1
-                
+
   test-backend:
     docker:
       - image: cimg/node:16.14.2
@@ -277,7 +277,7 @@ jobs:
               then
                 # your code here
               fi
-            
+
 
 workflows:
   default:
