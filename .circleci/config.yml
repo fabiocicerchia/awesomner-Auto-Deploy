@@ -227,17 +227,15 @@ jobs:
           command: |
             sudo yum install python -y
       - run:
+          name: Install Node, NPM tar, gzip
+          command: |
+            sudo yum -y install nodejs npm tar gzip
+      - run:
           name: Install Ansible
           command: |
             sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
             sudo python get-pip.py --user
             sudo python -m pip install --user ansible
-      - run:
-          name: Install Node and NPM
-          command: |
-            sudo yum -y install nodejs
-            sudo yum -y install npm
-            sudo yum -y install tar
       - run:
           name: Get backend url
           command: |
