@@ -216,7 +216,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: apt-get update and upgrade
+          name: Update packages
           command: |
             sudo apt update && sudo apt upgrade
       - run:
@@ -272,11 +272,16 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
+          name: Update packages
+          command: |
+            sudo apt update && sudo apt upgrade
+      - run:
           name: Install dependencies
           command: |
-            apk add --update ansible
-            apk add --update tar gzip ansible nodejs npm
-            pip install awscli
+            sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+            sudo python get-pip.py --user
+            sudo python -m pip install --user ansible
+            sudo apt-get install tar gzip ansible nodejs npm
       - run:
           name: Deploy backend
           command: |
