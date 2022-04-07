@@ -264,24 +264,21 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: circleci/python:3.8.2
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
           fingerprints: ["ca:f1:71:b6:b3:fe:6b:e1:77:6f:2d:cd:4c:18:60:d7"]
       - attach_workspace:
           at: ~/
-      - run:
-          name: Update packages
-          command: |
-            sudo apt update && sudo apt upgrade
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Install dependencies
           command: |
-            sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            sudo python get-pip.py --user
-            sudo python -m pip install --user ansible
-            sudo apt-get install tar gzip ansible nodejs npm
+            apk add --update ansible
+            apk add --update tar gzip ansible nodejs npm
+            pip install awscli
       - run:
           name: Deploy backend
           command: |
