@@ -23,7 +23,7 @@ commands:
       - run:
           name: Revert migrations
           command: |
-            SUCCESS = $(curl --insecure  https://kvdb.io/DX6HMtJsKGe6Dj6xpYx8go/migration_<< parameters.workflow_id >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/DX6HMtJsKGe6Dj6xpYx8go/migration_<< parameters.workflow_id >>)
             if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
