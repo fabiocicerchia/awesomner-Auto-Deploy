@@ -210,7 +210,7 @@ jobs:
 
   deploy-frontend:
     docker:
-      - image: circleci/python:3.8.2
+      - image: cimg/python:3.8.2
     steps:
       - checkout
       - attach_workspace:
