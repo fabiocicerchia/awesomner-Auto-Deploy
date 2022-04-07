@@ -227,8 +227,8 @@ jobs:
           name: Install Ansible
           command: |
             sudo curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-            sudo python get-pip.py --user
-            sudo python -m pip install --user ansible
+            sudo python3 get-pip.py --user
+            sudo python3 -m pip install --user ansible
       - run:
           name: Install Node,NPM, and AWS CLI
           command: |
