@@ -281,10 +281,14 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            sudo apt -y install tar gzip unzip ansible
+            sudo apt -y install tar gzip unzip
             curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
             unzip awscliv2.zip
             sudo ./aws/install
+      - run:
+          name: Install Ansible
+          command: |
+            python -m pip install --user ansible
           # command: |
           #   apk add --update tar gzip ansible curl
           #   pip install awscli
