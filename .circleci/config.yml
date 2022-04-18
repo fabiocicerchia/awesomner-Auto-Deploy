@@ -284,6 +284,7 @@ jobs:
           command: |
             apk add --update tar gzip ansible curl
             pip install awscli
+            apk add --update nodejs=13.8
             node --version
             npm --version
       - run:
