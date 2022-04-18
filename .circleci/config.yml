@@ -264,7 +264,8 @@ jobs:
 
   deploy-backend:
     docker:
-      - image: cimg/node:13.8
+      # - image: cimg/node:13.8
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       - add_ssh_keys:
@@ -275,15 +276,16 @@ jobs:
           keys: [backend-build]
       - run:
           name: Install dependencies
-          command: |
-            sudo apt -y install tar gzip unzip ansible
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
           # command: |
-            # apk add --update ansible
-            # apk add --update tar gzip ansible nodejs@13.8 npm@6.13 curl
-            # pip install awscli
+          #   sudo apt -y install tar gzip unzip ansible
+          #   curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+          #   unzip awscliv2.zip
+          #   sudo ./aws/install
+          command: |
+            apk add --update tar gzip ansible curl
+            pip install awscli
+            node --version
+            npm --version
       - run:
           name: Deploy backend
           command: |
