@@ -1,8 +1,13 @@
 ---
+- name: Creates directory
+  file:
+    path: /home/ubuntu/backend
+    state: directory
+
 - name: "extract artifact."
   unarchive:
-    src: /root/project/artifact.tar.gz
-    dest: /home/ubuntu/
+    src: /home/circleci/project/artifact.tar.gz
+    dest: /home/ubuntu/backend
 
 - name: "stop app."
   become: true
