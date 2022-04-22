@@ -17,5 +17,6 @@
 - name: "start app."
   become: true
   shell: |
+    cd /home/ubuntu/backend
     npm install
     pm2 start npm -- start
