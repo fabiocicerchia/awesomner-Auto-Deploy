@@ -411,15 +411,16 @@ jobs:
         - run:
             name: Get old stack workflow id
             command: |
-              # your code here
-              export OldWorkflowID="the id here"
-              export STACKS=[] #put the list of stacks here
+              export OldWorkflowID=$(aws cloudformation list-exports --query "Exports[?Name==\`WorkflowID\`].Value" --no-paginate --output text)
+              export STACKS=($(aws cloudformation list-stacks --query "StackSummaries[*].StackName" --stack-status-filter CREATE_COMPLETE --no-paginate --output text))
         - run:
             name: Remove old stacks and files
             command: |
               if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
               then
-                # your code here
+                aws s3 rm s3://${OldWorkflowID} --recursive
+                aws cloudformation delete-stack --stack-name "udapeople-backend-${OldWorkflowID: -7}"
+                aws cloudformation delete-stack --stack-name "udapeople-frontend-${OldWorkflowID: -7}"
               fi
 
 
