@@ -409,7 +409,7 @@ jobs:
         # Checkout code from git
         - checkout
         - attach_workspace:
-          at: ~/
+            at: ~/
         - run:
             name: Get old stack workflow id
             command: |
