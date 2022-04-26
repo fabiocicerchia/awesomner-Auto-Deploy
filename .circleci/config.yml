@@ -408,6 +408,8 @@ jobs:
       steps:
         # Checkout code from git
         - checkout
+        - attach_workspace:
+          at: ~/
         - run:
             name: Get old stack workflow id
             command: |
@@ -418,7 +420,9 @@ jobs:
         - run:
             name: Remove old stacks and files
             command: |
-              echo ${OldWorkflowID}
+              cat ~/OldWorkflowID.txt
+              OldWorkflowID=$(cat ~/OldWorkflowID.txt)
+              echo OldWorkflowID: "${OldWorkflowID}"
               if [[ "${STACKS[@]}" =~ "${OldWorkflowID}" ]]
               then
                 aws s3 rm s3://${OldWorkflowID} --recursive
