@@ -32,7 +32,7 @@ Resources:
       InstanceType: t2.micro
       SecurityGroups:
         - Ref: InstanceSecurityGroup
-      KeyName: WebAppKey
+      KeyName: Udapeople_key
       ImageId: ami-042ad9eec03638628
       Tags:
         - Key: Name
