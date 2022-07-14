@@ -32,7 +32,7 @@ Resources:
       InstanceType: t2.micro
       SecurityGroups:
         - Ref: InstanceSecurityGroup
-      KeyName: Udapeople_key
+      KeyName: udapeople_deploy
       ImageId: ami-0c9354388bb36c088
       Tags:
         - Key: Name
