@@ -173,7 +173,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: 
-            - "ad:29:5d:87:63:85:61:90:b7:8c:d1:60:85:b2:27:84"
+            - "80:60:03:c2:7e:ee:82:de:32:48:85:ae:14:04:ee:93"
       - attach_workspace:
           at: ~/
       - run:
@@ -199,8 +199,8 @@ jobs:
             cd .circleci/ansible
             cat inventory.txt
             ansible-playbook -i inventory.txt configure-server.yml
-      # - destroy-environment:
-          # workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      - destroy-environment:
+          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
   run-migrations:
     docker:
@@ -284,7 +284,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints: 
-            - "ad:29:5d:87:63:85:61:90:b7:8c:d1:60:85:b2:27:84"
+            - "80:60:03:c2:7e:ee:82:de:32:48:85:ae:14:04:ee:93"
       - attach_workspace:
           at: ~/
       - restore_cache:
