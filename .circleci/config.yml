@@ -214,6 +214,7 @@ jobs:
           command: |
             cd backend
             npm install
+            npm install --save-dev webpack@5.74.0
             npm audit fix --force
             npm audit fix --audit-level=critical
             npm audit --audit-level=critical
