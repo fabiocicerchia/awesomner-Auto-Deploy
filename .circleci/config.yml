@@ -26,7 +26,7 @@ commands:
           name: Revert migrations
           when: on_fail
           command: |
-            SUCCESS=$(curl --insecure  https://kvdb.io/Tf34Tf64nrk21mpDMKc3up/migration_<< parameters.workflow_id >>)
+            SUCCESS=$(curl --insecure  https://kvdb.io/NCxEtqDPny473FnG3NSnoe/migration_<< parameters.workflow_id >>)
             if(( $SUCCESS==1 ));
             then
               cd ~/project/backend
@@ -214,13 +214,14 @@ jobs:
           command: |
             cd backend
             npm install
+            npm audit fix
             npm run migrations > migrations_dump.txt
       - run:
           name: Send migration results to kvdb
           command: |
             if grep -q "has been executed successfully." ~/project/backend/migrations_dump.txt
             then
-              curl https://kvdb.io/Tf34Tf64nrk21mpDMKc3up/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d "1"
+              curl https://kvdb.io/NCxEtqDPny473FnG3NSnoe/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d "1"
             fi
       - destroy-environment:
           workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
