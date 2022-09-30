@@ -1,1 +1,3 @@
 [URL1] https://github.com/awesomner/Auto-Deploy/
+[URL2] http://udapeople-3477a1b.s3-website.eu-central-1.amazonaws.com/#/employees
+[URL3] http://d9no9eujboh2n.cloudfront.net
