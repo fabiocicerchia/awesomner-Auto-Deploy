@@ -207,8 +207,8 @@ jobs:
       - image: python:3.7-alpine3.11
     steps:
       - checkout
-      # - restore_cache:
-          # keys: [backend-build]
+      - restore_cache:
+          keys: [backend-build]
       - run:
           name: Install dependencies
           command: |
