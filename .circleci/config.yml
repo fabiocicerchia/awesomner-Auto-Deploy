@@ -204,16 +204,11 @@ jobs:
 
   run-migrations:
     docker:
-      - image: python:3.7-alpine3.11
+      - image: cimg/node:13.8.0
     steps:
       - checkout
       - restore_cache:
           keys: [backend-build]
-      - run:
-          name: Install dependencies
-          command: |
-            apk add --update tar gzip ansible nodejs npm openssh-client
-            pip install awscli
       - run:
           name: Run migrations
           command: |
@@ -229,8 +224,8 @@ jobs:
             then
               curl https://kvdb.io/NCxEtqDPny473FnG3NSnoe/migration_${CIRCLE_WORKFLOW_ID:0:7}  -d "1"
             fi
-      - destroy-environment:
-          workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
+      # - destroy-environment:
+      #     workflow_id: "${CIRCLE_WORKFLOW_ID:0:7}"
 
   deploy-frontend:
     docker:
