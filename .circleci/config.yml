@@ -204,11 +204,16 @@ jobs:
 
   run-migrations:
     docker:
-      - image: cimg/node:13.8.0
+      - image: python:3.7-alpine3.11
     steps:
       - checkout
       # - restore_cache:
           # keys: [backend-build]
+      - run:
+          name: Install dependencies
+          command: |
+            apk add --update tar gzip ansible nodejs npm openssh-client
+            pip install awscli
       - run:
           name: Run migrations
           command: |
